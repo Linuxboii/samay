@@ -16,6 +16,14 @@ Find a meeting time across time zones.
 
 Uses Intl.DateTimeFormat, no time zone data is bundled or fetched.
 
+## Demand
+
+Semrush estimates World Time Buddy, a time zone comparison site, at roughly 9 to 10.7 million visits a month.
+
+- [Semrush: worldtimebuddy.com](https://www.semrush.com/website/worldtimebuddy.com/overview/)
+
+These figures measure demand for the task, from existing tools. They are third-party estimates or company claims, not usage of this tool.
+
 ## Privacy
 
 Everything runs in your browser. There is no backend, no analytics and no account. Nothing you enter is uploaded.
