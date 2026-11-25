@@ -1,0 +1,12 @@
+{
+  "name": "samay",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Find a meeting time across time zones",
+  "license": "MIT",
+  "scripts": {
+    "test": "node --test",
+    "start": "npx --yes serve -l 5173 ."
+  }
+}

@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Samay - Find a meeting time across time zones</title>
+  <meta name="description" content="Add the cities your team lives in and see, hour by hour, when everyone is at work. Daylight saving handled. Share the plan as a link.">
+  <link rel="stylesheet" href="base.css">
+  <style>
+    :root { --accent: #4338ca; --work: #dcfce7; --awake: #f4f4f5; --night: #e4e4e7; --work-ink: #14532d; }
+    @media (prefers-color-scheme: dark) { :root { --accent: #818cf8; --accent-ink: #11113a; --work: #0f3d24; --awake: #1d1d21; --night: #0c0c0e; --work-ink: #bbf7d0; } }
+    .zones { display: flex; flex-wrap: wrap; gap: 8px; }
+    .chip { display: inline-flex; gap: 6px; align-items: center; background: var(--surface-2); border: 1px solid var(--border); border-radius: 999px; padding: 4px 6px 4px 12px; font-size: 14px; }
+    .chip button { padding: 2px 8px; border-radius: 999px; font-size: 13px; }
+    .grid { overflow-x: auto; }
+    .grid table { min-width: 520px; }
+    .grid td, .grid th { text-align: center; padding: 6px 8px; white-space: nowrap; }
+    .grid th { font-size: 13px; }
+    .grid tbody tr { cursor: pointer; }
+    .grid td.work { background: var(--work); color: var(--work-ink); }
+    .grid td.awake { background: var(--awake); }
+    .grid td.night { background: var(--night); color: var(--muted); }
+    .grid tr.best td:first-child { box-shadow: inset 4px 0 0 var(--accent); }
+    .grid tr:hover td { filter: brightness(0.96); }
+    .grid sup { color: var(--muted); font-size: 10px; margin-left: 2px; }
+    .legend { display: flex; gap: 14px; flex-wrap: wrap; font-size: 13px; color: var(--muted); }
+    .legend i { display: inline-block; width: 12px; height: 12px; border-radius: 3px; margin-right: 6px; vertical-align: -1px; border: 1px solid var(--border); }
+  </style>
+</head>
+<body>
+  <header class="top"><div class="wrap">
+    <h1>Samay</h1>
+    <p>Add the places your people are in. See every hour of the day side by side, and the hours when everyone is at work.</p>
+  </div></header>
+  <main><div class="wrap stack">
+    <section class="panel stack">
+      <div class="row" style="display:grid;grid-template-columns:1fr auto;gap:10px;align-items:end">
+        <label class="field">Add a city or time zone
+          <input id="search" type="text" list="tzlist" placeholder="Start typing, e.g. Tokyo" autocomplete="off">
+        </label>
+        <button id="add" class="primary" type="button">Add</button>
+      </div>
+      <datalist id="tzlist"></datalist>
+      <div class="zones" id="zones"></div>
+      <div class="row" style="display:grid;grid-template-columns:minmax(0,220px) auto 1fr;justify-items:start;gap:10px;align-items:end">
+        <label class="field">Date<input id="date" type="date"></label>
+        <button id="share" type="button">Copy share link</button>
+      </div>
+      <p class="err" id="err" role="alert"></p>
+    </section>
+    <section class="panel stack">
+      <div class="legend"><span><i style="background:var(--work)"></i>Working hours, 9 to 18</span><span><i style="background:var(--awake)"></i>Awake</span><span><i style="background:var(--night)"></i>Asleep</span><span>Marked rows suit everyone best. Click a row to copy it.</span></div>
+      <p id="best" class="small" aria-live="polite"></p>
+      <div class="grid"><table><thead><tr id="head"></tr></thead><tbody id="body"></tbody></table></div>
+    </section>
+  </div></main>
+  <footer class="bottom"><div class="wrap">
+    <span>Samay. Free and open source.</span>
+    <span><a href="https://github.com/Linuxboii/samay">Source</a> &nbsp; <a href="https://sushanth.avlokai.com">Made by Sushanth Kasturi</a></span>
+  </div></footer>
+  <script type="module" src="app.js"></script>
+</body>
+</html>
